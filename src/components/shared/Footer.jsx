@@ -7,7 +7,7 @@ import { MdAlternateEmail, MdOutlineShare } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <div class="bg-gradient-to-b from-slate-900 to-indigo-950  ">
+    <div className="bg-gradient-to-b from-slate-900 to-indigo-950  ">
         <div className="text-center py-10 container mx-auto px-4 space-y-3 md:space-y-6">
         <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold"> Infinite Stories Await</h1>
         <p className="text-lg text-gray-300 max-w-[600px] mx-auto">

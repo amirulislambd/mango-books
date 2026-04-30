@@ -125,7 +125,7 @@ const Banner = () => {
                                 className="object-cover -z-10 rounded-lg"
                                 priority
                             />     
-                            <div className='absolute inset-0 bg-black/50 z-10'></div>   
+                            <div className='absolute inset-0 bg-black/30 z-10'></div>   
                         <div className='absolute text-center text-white px-4 md:px-8 lg:px-16'>
                             <h3 className='text-lg md:text-xl lg:text-2xl font-bold'>{slide.topTitle}</h3>
                             <h2 className='text-xl md:text-3xl lg:text-4xl font-bold mt-2'>{slide.mainTitle}</h2>

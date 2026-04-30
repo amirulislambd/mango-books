@@ -15,6 +15,7 @@ const MarqueeText = () => {
         <Marquee
         // behavior = 'scroll'
         // direction='left'
+        pauseOnHover={true}
         >
            <div className='flex gap-8 uppercase  font-bold text-lg md:text-xl lg:text-2xl'>
            {

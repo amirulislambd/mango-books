@@ -25,14 +25,14 @@ const NavMenu = ({ links }) => {
       )}
 
       <div
-        className={` md:hidden flex flex-col gap-2 absolute shadow-sm  p-5 rounded-lg bg-zinc-50 border-2 border-zinc-50   top-12 transition-all duration-300 ease-in-out origin-top-left  ${isMenuOpen ? "scale-100 opacity-100 translate-y-0 translate-0" : "opacity-0 translate-x-4 scale-0"}`}
+        className={` md:hidden flex flex-col gap-2 absolute  p-5 rounded-lg bg-white/10 backdrop-blur-md shadow-sl  border-2 border-zinc-500  top-14 transition-all duration-300 ease-in-out origin-top-left  ${isMenuOpen ? "scale-100 opacity-100 translate-y-0 translate-0" : "opacity-0 translate-x-4 scale-0"}`}
       >
         {links.map((link) => (
           <Link
             onClick={onCloseMenu}
             key={link.name}
             href={link.href}
-            className={`text-lg text-center w-full px-3  rounded-md hover:bg-zinc-200 font-medium text-gray-700 ${pathName === link.href && "bg-gradient-to-r from-blue-500 to-purple-500 text-white"}`}
+            className={` text-lg text-center w-full px-3 text-white rounded-md hover:bg-zinc-100/30 font-medium text-gray-700 ${pathName === link.href && "bg-gradient-to-r from-blue-500 to-purple-500 text-white"}`}
           >
             {link.name}
           </Link>
