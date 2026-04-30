@@ -1,0 +1,45 @@
+"use client";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { RiMenuFold2Fill, RiMenuUnfold2Line } from "react-icons/ri";
+
+const NavMenu = ({ links }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const pathName = usePathname();
+
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+  const onCloseMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  return (
+    <div className="md:hidden cursor-pointer p-2 rounded text-2xl font-semibold">
+      {!isMenuOpen ? (
+        <RiMenuUnfold2Line onClick={handleMenuClick} />
+      ) : (
+        <RiMenuFold2Fill onClick={handleMenuClick} />
+      )}
+
+      <div
+        className={` md:hidden flex flex-col gap-2 absolute shadow-sm  p-5 rounded-lg bg-zinc-50 border-2 border-zinc-50   top-12 transition-all duration-300 ease-in-out origin-top-left  ${isMenuOpen ? "scale-100 opacity-100 translate-y-0 translate-0" : "opacity-0 translate-x-4 scale-0"}`}
+      >
+        {links.map((link) => (
+          <Link
+            onClick={onCloseMenu}
+            key={link.name}
+            href={link.href}
+            className={`text-lg text-center w-full px-3  rounded-md hover:bg-zinc-200 font-medium text-gray-700 ${pathName === link.href && "bg-gradient-to-r from-blue-500 to-purple-500 text-white"}`}
+          >
+            {link.name}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default NavMenu;

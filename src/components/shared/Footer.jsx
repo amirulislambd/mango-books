@@ -1,0 +1,84 @@
+import { Button } from "@heroui/react";
+import Link from "next/link";
+import React from "react";
+import { AiOutlineSend } from "react-icons/ai";
+import { FaBookOpen } from "react-icons/fa";
+import { MdAlternateEmail, MdOutlineShare } from "react-icons/md";
+
+const Footer = () => {
+  return (
+    <div class="bg-gradient-to-b from-slate-900 to-indigo-950  ">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 py-10 container mx-auto px-4">
+      <div className="flex flex-col max-w-[300px] gap-4">
+        <Link
+          href={"/"}
+          className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+        >
+          <span className="text-purple-400">
+            <FaBookOpen />
+          </span>
+          <h1>Mango Books</h1>
+        </Link>
+        <p>
+          Elevating the borrowing experience for the modern era. Knowledge
+          accessible with a single click.
+        </p>
+        <span className="flex gap-4 text-2xl mt-4">
+        <MdOutlineShare />
+        <MdAlternateEmail />
+        </span>
+      </div>
+      <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold mb-2">Library</h2>
+        <ul>
+          <li>
+            <Link href="/allBooks" className="hover:underline"> All Books</Link>
+          </li>
+            <li>
+            <Link href="/profile" className="hover:underline"> Research Papers</Link>
+            </li>
+            <li>
+            <Link href="#" className="hover:underline"> Digital Archives</Link>
+            </li>
+            <li>
+            <Link href="#" className="hover:underline">Audiobooks</Link>
+            </li>
+          
+        </ul>       
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <h2 className="text-xl font-semibold mb-2">Company</h2>
+        <ul>
+          <li>
+            <Link href="#" className="hover:underline"> About Us</Link>      
+            </li>
+            <li>
+            <Link href="#" className="hover:underline"> Contact</Link>
+            </li>
+            <li>
+            <Link href="#" className="hover:underline"> Careers</Link>
+            </li>
+            <li>
+            <Link href="#" className="hover:underline"> Blog</Link>
+            </li>
+        </ul>
+      </div>
+      <div className="flex flex-col gap-4 max-w-[300px]">
+        <h2 className="text-xl font-semibold mb-2">Newsletter</h2>
+        <p>Subscribe to our newsletter for updates and offers.</p>
+        <form className="mt-4 flex items-center">
+          <input  type="email"    placeholder="Enter your email"    className=" px-2 py-1 outline-none rounded-l-md border bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"  />
+          <Button size="sm" type="submit" className="p-3 p bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-r-full hover:bg-gradient-to-l"><AiOutlineSend /></Button>
+        </form>
+      </div>
+      </div>
+      <div className="border-t border-gray-600 mt-8"></div>
+      <p className="text-center text-gray-400 py-4">
+        &copy; 2026 Mango Books. All rights reserved.
+        </p>
+    </div>
+  );
+};
+
+export default Footer;
