@@ -19,9 +19,9 @@ const NavMenu = ({ links }) => {
   return (
     <div className="md:hidden cursor-pointer p-2 rounded text-2xl font-semibold">
       {!isMenuOpen ? (
-        <RiMenuUnfold2Line onClick={handleMenuClick} />
-      ) : (
-        <RiMenuFold2Fill onClick={handleMenuClick} />
+          <RiMenuFold2Fill onClick={handleMenuClick} />
+    ) : (
+          <RiMenuUnfold2Line onClick={handleMenuClick} />
       )}
 
       <div

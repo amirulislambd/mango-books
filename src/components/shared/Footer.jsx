@@ -8,6 +8,12 @@ import { MdAlternateEmail, MdOutlineShare } from "react-icons/md";
 const Footer = () => {
   return (
     <div class="bg-gradient-to-b from-slate-900 to-indigo-950  ">
+        <div className="text-center py-10 container mx-auto px-4 space-y-3 md:space-y-6">
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold"> Infinite Stories Await</h1>
+        <p className="text-lg text-gray-300 max-w-[600px] mx-auto">
+          Mango Book provides a seamless, premium interface for the modern reader to explore the world's greatest literature.
+        </p>
+        </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 py-10 container mx-auto px-4">
       <div className="flex flex-col max-w-[300px] gap-4">
         <Link
@@ -69,7 +75,9 @@ const Footer = () => {
         <p>Subscribe to our newsletter for updates and offers.</p>
         <form className="mt-4 flex items-center">
           <input  type="email"    placeholder="Enter your email"    className=" px-2 py-1 outline-none rounded-l-md border bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"  />
-          <Button size="sm" type="submit" className="p-3 p bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-r-full hover:bg-gradient-to-l"><AiOutlineSend /></Button>
+          <Button size="sm" type="submit" className="p-3 p bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-r-full hover:bg-gradient-to-l"><span className="hover:-rotate-45 transition-transform duration-300">
+          <AiOutlineSend />
+            </span> </Button>
         </form>
       </div>
       </div>

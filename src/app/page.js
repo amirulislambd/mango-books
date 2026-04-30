@@ -1,9 +1,10 @@
-import Image from "next/image";
+import Banner from "@/components/home/banner/Banner";
+
 
 export default function Home() {
   return (
    <div>
-    <h1 className="text-3xl font-bold text-center mt-10">Welcome to Mango Books</h1>
+    <Banner/>
    </div>
   );
 }
