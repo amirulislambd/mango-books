@@ -4,18 +4,27 @@ import React from "react";
 import NavLinks from "./NavLinks";
 import { FaBookOpen } from "react-icons/fa";
 import Link from "next/link";
-import { Button } from "@heroui/react";
-import NavMenu from "./NavMenu";
 
-const Navbar = () => {
-  
-  
-  
+import NavMenu from "./NavMenu";
+import NavbarSignBTN from "./NavbarSignBTN";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+
+
+const Navbar = async () => {
+ 
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+
   const links = [
     { name: "Home", href: "/" },
     { name: "All Books", href: "/allBooks" },
     { name: "Profile", href: "/profile" },
   ];
+
+ 
 
   return (
     <div className=" md:bg-white/10 md:backdrop-blur-md shadow-xl z-50 sticky top-0 mx-2">
@@ -38,12 +47,7 @@ const Navbar = () => {
           </ul>
         </div>
         <div className=" flex items-center justify-between md:flex-row-reverse gap-0">
-          <Button
-            size="sm"
-            className=" bg-gradient-to-r from-blue-500 to-purple-500"
-          >
-            Login
-          </Button>
+         <NavbarSignBTN user={user}/>
         </div>
       </div>
     </div>
