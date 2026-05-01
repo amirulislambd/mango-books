@@ -17,7 +17,7 @@ const NavbarSignBTN = ({ user }) => {
             <Avatar className="w-8 h-8">
               <Avatar.Image alt="Online User" src={user?.image} />
               <Avatar.Fallback>
-                {user.name.charAt(0).toUpperCase()}
+                {user?.name.charAt(0).toUpperCase()}
               </Avatar.Fallback>
             </Avatar>
           </div>
