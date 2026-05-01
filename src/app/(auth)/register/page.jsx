@@ -1,13 +1,16 @@
 "use client";
 import WelcomeText from "@/components/shared/auth/WelcomeText";
 import { authClient } from "@/lib/auth-client";
+import { getImgBbURL } from "@/lib/dataFetch";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const RegisterPage = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -19,29 +22,12 @@ const RegisterPage = () => {
   const photo =
     photoUrl && photoUrl.length > 0 ? URL.createObjectURL(photoUrl[0]) : null;
 
-  // console.log(formData)
-
   const onSubmit = async (info) => {
-    // console.log(data);
+
     const { name, email, password, photo } = info;
 
-    const photoURL = photo[0];
-    const formData = new FormData();
-    formData.append("image", photoURL);
-    // console.log(photoURL)
-    console.log(formData);
-
     try {
-      const imgBB = await fetch(
-        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_KEY}`,
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
-      const imgBbURL = await imgBB.json();
-      const photoURL =imgBbURL.data.display_url
-      console.log(imgBbURL);
+      const photoURL = await getImgBbURL(photo);
 
       const { data, error } = await authClient.signUp.email({
         name: name,
@@ -51,17 +37,33 @@ const RegisterPage = () => {
         callbackURL: "/",
       });
 
-      if(data){
-        toast.success('Successfully Registered! Welcome to MangoBooks',{
-          position: 'bottom-center',
-        autoClose:1500  
-        })
+      if (error) {
+        toast.error(error.message, {
+          position: "bottom-center",
+          autoClose: 1500,
+        });
       }
 
+      if (data) {
+        toast.success("Successfully Registered! Welcome to MangoBooks", {
+          position: "bottom-center",
+          autoClose: 1500,
+        });
+        await authClient.signOut();
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
+      }
     } catch (error) {
       alert(error.message);
     }
   };
+
+  const signWithGoogle =async ()=>{
+const data = await authClient.signIn.social({
+  provider:'google'
+})
+  }
 
   return (
     <div class="backdrop-blur-2xl bg-white/5 border border-white/10 rounded-xl shadow-2xl  bg-[radial-gradient(circle_at_20%_30%,#4f46e5_0%,transparent_40%),radial-gradient(circle_at_80%_70%,#7c03d3_0%,transparent_40%)] md:m-10 p-4 md:p-8 lg:p-12">
@@ -149,7 +151,7 @@ const RegisterPage = () => {
           <h1 className="font-bold text-center border-b border-indigo-500">
             Or
           </h1>
-          <button class="bg-gradient-to-br from-[#4f46e5] to-[#7c03d3] shadow-[0_0_30px_-5px_rgba(79,70,229,0.4)] text-white font-semibold py-3 px-6 rounded-lg hover:scale-[1.02] active:scale-[0.98] transition-transform w-full cursor-pointer duration-500">
+          <button onClick={signWithGoogle} class="bg-gradient-to-br from-[#4f46e5] to-[#7c03d3] shadow-[0_0_30px_-5px_rgba(79,70,229,0.4)] text-white font-semibold py-3 px-6 rounded-lg hover:scale-[1.02] active:scale-[0.98] transition-transform w-full cursor-pointer duration-500">
             <span className="flex gap-2 items-center justify-center">
               <FaGoogle />
               Sign in with Google

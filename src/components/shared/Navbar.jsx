@@ -8,6 +8,9 @@ import { Button } from "@heroui/react";
 import NavMenu from "./NavMenu";
 
 const Navbar = () => {
+  
+  
+  
   const links = [
     { name: "Home", href: "/" },
     { name: "All Books", href: "/allBooks" },
