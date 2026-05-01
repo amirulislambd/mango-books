@@ -1,10 +1,11 @@
 "use client";
 import WelcomeText from "@/components/shared/auth/WelcomeText";
+import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
-
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const {
@@ -14,32 +15,77 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
   const photoUrl = watch("photo");
-  const photo = photoUrl && photoUrl.length > 0 ? URL.createObjectURL(photoUrl[0]) : null;
-  
+  const photo =
+    photoUrl && photoUrl.length > 0 ? URL.createObjectURL(photoUrl[0]) : null;
+
+  // console.log(formData)
+
+  const onSubmit = async (info) => {
+    // console.log(data);
+    const { name, email, password, photo } = info;
+
+    const photoURL = photo[0];
+    const formData = new FormData();
+    formData.append("image", photoURL);
+    // console.log(photoURL)
+    console.log(formData);
+
+    try {
+      const imgBB = await fetch(
+        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_KEY}`,
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
+      const imgBbURL = await imgBB.json();
+      const photoURL =imgBbURL.data.display_url
+      console.log(imgBbURL);
+
+      const { data, error } = await authClient.signUp.email({
+        name: name,
+        email: email,
+        password: password,
+        image: photoURL,
+        callbackURL: "/",
+      });
+
+      if(data){
+        toast.success('Successfully Registered! Welcome to MangoBooks',{
+          position: 'bottom-center',
+        autoClose:1500  
+        })
+      }
+
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   return (
     <div class="backdrop-blur-2xl bg-white/5 border border-white/10 rounded-xl shadow-2xl  bg-[radial-gradient(circle_at_20%_30%,#4f46e5_0%,transparent_40%),radial-gradient(circle_at_80%_70%,#7c03d3_0%,transparent_40%)] md:m-10 p-4 md:p-8 lg:p-12">
       <div className=" grid grid-cols-1 lg:grid-cols-2 md:gap-8 items-center justify-center">
-        <div className="p-6 m-   flex-1  flex-col items-center justify-center">         
-        <WelcomeText/>
+        <div className="p-6 m-   flex-1  flex-col items-center justify-center">
+          <WelcomeText />
         </div>
         {/* form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="p-6 max-w-md mx-auto space-y-2 md:space-y-4 lg:space-y-6 bg-white/10 rounded-lg shadow-md w-full relative"
         >
-          
-          <div >
-            {
-              photo &&
-            <div className="absolute top-8 left-4 border border-indigo-500/50 backdrop-blur-md shadow-2xl rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white/10 hover:scale-110 transition-transform duration-300 ">
-              <Image width={300} height={300} src={photo} alt="Preview" className="rounded-full w-12 h-12 md:w-16 md:h-16" />
-            </div>
-            }
+          <div>
+            {photo && (
+              <div className="absolute top-8 left-4 border border-indigo-500/50 backdrop-blur-md shadow-2xl rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center bg-white/10 hover:scale-110 transition-transform duration-300 ">
+                <Image
+                  width={300}
+                  height={300}
+                  src={photo}
+                  alt="Preview"
+                  className="rounded-full w-12 h-12 md:w-16 md:h-16"
+                />
+              </div>
+            )}
             <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
             <p className="text-white/80 text-center">
               Access your personal archive.
@@ -64,7 +110,6 @@ const RegisterPage = () => {
               accept="image/*"
               {...register("photo", { required: "Photo is required" })}
               placeholder="Choose your photo"
-
               className=" w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder:text-white/40 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
             />
             {errors.photo && (

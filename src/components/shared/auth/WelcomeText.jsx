@@ -14,7 +14,7 @@ const WelcomeText = () => {
         <div className="flex flex-col items-center justify-center">
           {
             path === '/register' &&
-          <div class=" flex-1 space-y-4 mx-">
+          <div className=" flex-1 space-y-4 mx-">
             <p className="text-xl  font-bold  text-white bg-white/10 border border-white/20 rounded-lg px-4 py-2 w-max mx-auto ">
               <span className="inline-flex items-center gap-2">
                 <GiLifeBuoy className="animate-spin" />
