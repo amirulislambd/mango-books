@@ -33,7 +33,7 @@ const Navbar = async () => {
           <NavMenu links={links} />
           <Link
             href={"/"}
-            className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+            className="flex items-center gap-2 md:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
           >
             <span className="text-purple-400">
               <FaBookOpen />

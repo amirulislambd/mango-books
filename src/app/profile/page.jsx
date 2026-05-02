@@ -1,19 +1,23 @@
+import ProfileModal from '@/components/profile/ProfileModal';
 import { auth } from '@/lib/auth';
-import { Avatar } from '@heroui/react';
+import { Avatar, Button } from '@heroui/react';
 import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
+import { FaEdit } from 'react-icons/fa';
 
 const ProfilePage = async() => {
+
+    
 
     const session = await auth.api.getSession({
         headers: await headers(),
       });
       const user = session?.user;
-      console.log(user)
+    //   console.log(user)
 
     return (
-        <div className='flex flex-col items-center justify-center'>
+        <div className='flex flex-col items-center justify-center min-h-screen space-y-3'>
             <div >
             <Avatar className="w-16 h-16 md:w-30 md:h-30 lg:w-40 lg:h-40">
                           <Avatar.Image alt="Online User" src={user?.image} />
@@ -22,7 +26,8 @@ const ProfilePage = async() => {
                           </Avatar.Fallback>
                         </Avatar>
             </div>
-            <h1>
+           <div className='flex flex-col items-center space-y-1'>
+           <h1 className='text-2xl font-bold'>
                {user?.name}
             </h1>
             <p>{user?.email}</p>
@@ -34,6 +39,8 @@ const ProfilePage = async() => {
                 minute:'numeric',
                 second:'numeric'
             })}</p>
+           </div>
+           <ProfileModal user={user}/>
         </div>
     );
 };
