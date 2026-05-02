@@ -56,7 +56,7 @@ const LoginPage = () => {
 
   return (
     <div className="backdrop-blur-2xl bg-white/5 border border-white/10 rounded-xl shadow-2xl  bg-[radial-gradient(circle_at_20%_30%,#4f46e5_0%,transparent_40%),radial-gradient(circle_at_80%_70%,#7c03d3_0%,transparent_40%)] md:m-10 p-4 md:p-8 lg:p-12">
-      <div className=" grid grid-cols-1 lg:grid-cols-2 md:gap-8 items-center justify-center">
+      <div className=" grid grid-cols-1 lg:grid-cols-2  md:gap-8 items-center justify-center">
         <div className="p-6 m-   flex-1  flex-col items-center justify-center">
           <WelcomeText />
         </div>

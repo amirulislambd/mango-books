@@ -26,7 +26,7 @@ const ProfileModal = ({ user }) => {
   const photoUrl = watch("photo");
   const photo =
     photoUrl && photoUrl.length > 0 ? URL.createObjectURL(photoUrl[0]) : null;
-    console.log(photoUrl)
+  console.log(photoUrl);
 
   const onSubmit = async (info) => {
     const { name, photo } = info;
@@ -59,8 +59,8 @@ const ProfileModal = ({ user }) => {
           type: "success",
           isLoading: false,
           autoClose: 2000,
-        })
-      window.location.reload()
+        });
+        window.location.reload();
       }
     } catch (error) {
       toast.dismiss(loadingToast);
@@ -81,8 +81,8 @@ const ProfileModal = ({ user }) => {
         <Modal.Backdrop>
           <Modal.Container placement="auto">
             <Modal.Dialog className="sm:max-w-md ">
-              <Modal.Header>
-                <Modal.Icon className="relative left-1/2 ring-1/2  bg-accent-soft text-accent-soft-foreground">
+              <Modal.Header className="flex flex-col items-center justify-center">
+                <Modal.Icon className="  bg-accent-soft text-accent-soft-foreground">
                   <div className="relative">
                     <Avatar>
                       <Avatar.Image
@@ -96,11 +96,11 @@ const ProfileModal = ({ user }) => {
                   </div>
                 </Modal.Icon>
                 <Modal.Heading className="text-center">
-                  Update Your Info
+                  Customize Your Profile
                 </Modal.Heading>
                 <p className="mt-1.5 text-sm leading-5 text-muted text-center">
-                  Fill out the form below and we'll get back to you. The modal
-                  adapts automatically when the keyboard appears on mobile.
+                  Your profile details are used across MangoBooks to personalize
+                  your experience. Keep them updated to stay connected!
                 </p>
               </Modal.Header>
               <Modal.Body className="p-6">
@@ -115,8 +115,8 @@ const ProfileModal = ({ user }) => {
                       <input
                         type="text"
                         {...register("name", { required: "Name is required" })}
-                        placeholder="Name"
-                        className=" w-full bg-white/5 border  rounded-lg px-4 py-3 placeholder:text-white/30 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                        placeholder="Type your new name"
+                        className=" w-full bg-white/5 border  rounded-lg px-4 py-3 placeholder:text-gray-500 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
                       />
                       {errors.name && (
                         <p className="text-red-500">{errors.name.message}</p>
@@ -131,7 +131,7 @@ const ProfileModal = ({ user }) => {
                           required: "Photo is required",
                         })}
                         placeholder="Choose your photo"
-                        className=" w-full bg-white/5 border  rounded-lg px-4 py-3 placeholder:text-white/30 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                        className="file-input w-full bg-white/5 border  rounded-lg px-4 py-3 placeholder:text-white/30 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
                       />
                       {errors.photo && (
                         <p className="text-red-500">{errors.photo.message}</p>
