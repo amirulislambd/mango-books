@@ -21,13 +21,15 @@ const NavbarSignBTN = ({ user }) => {
               </Avatar.Fallback>
             </Avatar>
           </div>
-          <Button
+         <Link href={'/login'}>
+         <Button
             onClick={handleSignOut}
             size="sm"
             className=" bg-gradient-to-r from-blue-500 to-purple-500"
           >
             Logout
           </Button>
+         </Link>
         </div>
       ) : (
        <Link href={'/login'}>    
