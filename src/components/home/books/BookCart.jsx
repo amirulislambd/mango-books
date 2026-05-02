@@ -32,7 +32,7 @@ const BookCart = ({ book }) => {
             <Button 
               className="w-full font-bold text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 shadow-md hover:opacity-90"
             >
-              View Details
+              Details
             </Button>
           </Link>
         </CardFooter>

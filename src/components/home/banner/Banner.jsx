@@ -16,6 +16,7 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import Link from "next/link";
 
 const Banner = () => {
   const slides = [
@@ -128,23 +129,26 @@ const Banner = () => {
                 alt={slide.topTitle}
                 fill
                 className="object-cover -z-10 rounded-lg"
-                
               />
-              <div className="absolute inset-0 bg-black/30 z-10"></div>
+              {/* <div className="absolute inset-0 bg-black/30 z-10"></div> */}
               <div className="absolute text-center text-white px-4 md:px-8 lg:px-16">
                 <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
                   {slide.topTitle}
                 </h3>
-                <h2 className="text-xl md:text-3xl lg:text-4xl font-bold mt-2">
+                <h2 className="text-xl md:text-3xl lg:text-4xl font-bold mt-2 max-w-[750px]">
                   {slide.mainTitle}
                 </h2>
                 <div className="mt-4 flex gap-4  items-center justify-center">
-                  <button className="bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded">
-                    {slide.btn1}
-                  </button>
-                  <button className="bg-gradient-to-r from-gray-500 to-gray-600 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded">
-                    {slide.btn2}
-                  </button>
+                  <Link href={"/allBooks"}>
+                    <button className="bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded cursor-pointer">
+                      {slide.btn1}
+                    </button>
+                  </Link>
+                  <Link href={"/allBooks"}>
+                    <button className="bg-gradient-to-r from-gray-500 to-gray-600 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded cursor-pointer">
+                      {slide.btn2}
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
