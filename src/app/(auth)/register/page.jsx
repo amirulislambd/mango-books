@@ -39,17 +39,18 @@ const RegisterPage = () => {
 
       if (error) {
         toast.error(error.message, {
-          position: "bottom-center",
-          autoClose: 1500,
+          position: "top-center",
+          autoClose: 2000,
         });
       }
 
       if (data) {
-        toast.success("Successfully Registered! Welcome to MangoBooks", {
-          position: "bottom-center",
-          autoClose: 1500,
-        });
         await authClient.signOut();
+        toast.success("Successfully Registered! please login to continue", {
+          position: "top-center",
+          autoClose: 2000,
+        });
+        
         setTimeout(() => {
           router.push("/login");
         }, 1500);
