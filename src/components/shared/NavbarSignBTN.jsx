@@ -3,7 +3,7 @@
 import { authClient } from "@/lib/auth-client";
 import { Avatar, Button } from "@heroui/react";
 import Link from "next/link";
-import React from "react";
+import React from "react"
 
 const NavbarSignBTN = ({ user }) => {
   const handleSignOut = async () => {
@@ -12,14 +12,15 @@ const NavbarSignBTN = ({ user }) => {
   return (
     <div>
       {user ? (
-        <div className="flex items-center gap-2">
-          <div className="relative">
+        <div className="flex  items-center gap-2 ">
+          <div className="relative flex flex-col items-center">
             <Avatar className="w-8 h-8">
               <Avatar.Image alt="Online User" src={user?.image} />
               <Avatar.Fallback>
                 {user?.name.charAt(0).toUpperCase()}
               </Avatar.Fallback>
             </Avatar>
+            <p className="text-xs hidden md:flex">{user?.name.toLowerCase()}</p>
           </div>
          <Link href={'/login'}>
          <Button

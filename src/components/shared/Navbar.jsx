@@ -1,10 +1,9 @@
 import Image from "next/image";
 import React from "react";
-// import logo from '@/assets/logo.png';
 import NavLinks from "./NavLinks";
-import { FaBookOpen } from "react-icons/fa";
+// import { FaBookOpen } from "react-icons/fa";
 import Link from "next/link";
-
+import logo from '@/assets/logo.png'
 import NavMenu from "./NavMenu";
 import NavbarSignBTN from "./NavbarSignBTN";
 import { auth } from "@/lib/auth";
@@ -33,10 +32,12 @@ const Navbar = async () => {
           <NavMenu links={links} />
           <Link
             href={"/"}
-            className="flex items-center gap-2 md:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
+            className="flex items-center gap-2  md:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text"
           >
-            <span className="text-purple-400">
-              <FaBookOpen />
+            <span >
+              <Image width={50} height={50} src={logo} alt='mango books'
+              className="w-8 h-8 md:w-14 md:h-14 rounded-full "
+              />
             </span>
             <h1>Mango Books</h1>
           </Link>
