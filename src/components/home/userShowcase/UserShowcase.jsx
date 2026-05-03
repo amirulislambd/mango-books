@@ -14,7 +14,7 @@ const UserShowcase = () => {
       ];
 
     return (
-        <section>
+        <section className='my-5 md:my-10 '>
             <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="flex flex-col text-center items-center justify-center mb-12 gap-4">
@@ -31,7 +31,7 @@ const UserShowcase = () => {
         </div>
 
 
-<div>
+<div className='shadow-md py-2'>
     <Swiper
     modules={[Autoplay, Pagination]}
     spaceBetween={25}

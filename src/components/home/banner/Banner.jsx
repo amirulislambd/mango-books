@@ -107,7 +107,7 @@ const Banner = () => {
       topTitle: "Join Mango Books Today",
       mainTitle:
         "Become a part of our global community of readers and scholars today. Your journey starts now.",
-      btn1: "Sign Up",
+      btn1: "Browse Now",
       btn2: "Contact Us",
     },
   ];
