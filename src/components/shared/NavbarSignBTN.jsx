@@ -20,7 +20,7 @@ const NavbarSignBTN = ({ user }) => {
                 {user?.name.charAt(0).toUpperCase()}
               </Avatar.Fallback>
             </Avatar>
-            <p className="text-xs hidden md:flex">{user?.name.toLowerCase()}</p>
+            <p className="text-xs hidden lg:flex">{user?.name.toLowerCase()}</p>
           </div>
          <Link href={'/login'}>
          <Button

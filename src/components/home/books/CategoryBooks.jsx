@@ -42,7 +42,7 @@ const CategoryBooks = () => {
   };
 
   return (
-    <div className="fixed left-0 top-20 lg:top-6 h-[calc(100vh-80px)] w-44 md:w-56 lg:w-64 bg-[#0f111a]/80 border-r-2  border-white/10 transition-all duration-300  px-4">
+    <div className="fixed left-0 top-20 md:top-24 lg:top-4 h-[calc(100vh-80px)] w-44 md:w-56 lg:w-64 bg-[#0f111a]/80 border-r-2  border-white/10 transition-all duration-300  px-4">
       <div className="flex flex-col w-full gap-3">
         {categories.map((cat) => (
           <button
