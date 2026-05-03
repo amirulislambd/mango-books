@@ -12,34 +12,31 @@ const NavbarSignBTN = ({ user }) => {
   return (
     <div>
       {user ? (
-        <div className="flex  items-center gap-2 ">
-          <div className="relative flex flex-col items-center">
+        <div className="flex  items-center  ">
+          <div className="relative flex flex-row-reverse  items-center md:border-l-2 md:border-t-2 md:border-b-2 border-indigo-500  rounded-lg rounded-r-none  p-1 gap-1">
             <Avatar className="w-8 h-8">
               <Avatar.Image alt="Online User" src={user?.image} />
               <Avatar.Fallback>
                 {user?.name.charAt(0).toUpperCase()}
               </Avatar.Fallback>
             </Avatar>
-            <p className="text-xs hidden lg:flex">{user?.name.toLowerCase()}</p>
+            <p className="text-xs hidden md:flex border-y py-[1px]">{user?.name.toUpperCase()}</p>
           </div>
-         <Link href={'/login'}>
-         <Button
+         <a href={'/login'} className="rounded-lg rounded-l-none px-2 py-1 md:py-[10px] bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer">
+         <button
             onClick={handleSignOut}
-            size="sm"
-            className=" bg-gradient-to-r from-blue-500 to-purple-500"
+            size="lg"
+            className=" rounded-lg rounded-r- bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer"
           >
             Logout
-          </Button>
-         </Link>
+          </button>
+         </a>
         </div>
       ) : (
-       <Link href={'/login'}>    
-       <Button
-        size="sm"
-        className=" bg-gradient-to-r from-blue-500 to-purple-500"
-      >
+       <Link className="rounded-lg px-2 py-1 md:py-2 bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer" href={'/login'}>    
+      
         LogIn
-      </Button></Link>
+      </Link>
       )}
     </div>
   );

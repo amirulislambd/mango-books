@@ -32,19 +32,19 @@ const Banner = () => {
     {
       id: 2,
       img: screen2,
-      topTitle: "Explore New Worlds",
+      topTitle: "Find Your Next Read",
       mainTitle:
         "Unlock the secrets of history and science through our premium collection of rare and modern books.",
-      btn1: "Shop Now",
+      btn1: "Browse Now",
       btn2: "Explore All",
     },
     {
       id: 3,
       img: screen3,
-      topTitle: "Your Library, Anywhere",
+      topTitle: "Browse Now",
       mainTitle:
         "Access thousands of digital archives and storytelling masterpieces from the comfort of your home.",
-      btn1: "Get Started",
+      btn1: "Browse Now",
       btn2: "Learn More",
     },
     {
@@ -130,10 +130,10 @@ const Banner = () => {
                 fill
                 className="object-cover -z-10 rounded-lg"
               />
-              {/* <div className="absolute inset-0 bg-black/30 z-10"></div> */}
+              <div className="absolute inset-0 bg-black/30 "></div>
               <div className="absolute text-center text-white px-4 md:px-8 lg:px-16">
-                <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
-                  {slide.topTitle}
+                <h3 className="text-lg md:text-4xl  font-bold">
+                Find Your Next Read
                 </h3>
                 <h2 className="text-xl md:text-3xl lg:text-4xl font-bold mt-2 max-w-[750px]">
                   {slide.mainTitle}
@@ -141,7 +141,7 @@ const Banner = () => {
                 <div className="mt-4 flex gap-4  items-center justify-center">
                   <Link href={"/allBooks"}>
                     <button className="bg-gradient-to-r from-blue-500 to-purple-500 hover:bg-gradient-to-l text-white font-bold py-2 px-4 rounded cursor-pointer">
-                      {slide.btn1}
+                    Browse Now
                     </button>
                   </Link>
                   <Link href={"/allBooks"}>

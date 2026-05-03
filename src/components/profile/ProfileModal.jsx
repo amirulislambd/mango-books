@@ -130,8 +130,8 @@ const ProfileModal = ({ user }) => {
                         {...register("photo", {
                           required: "Photo is required",
                         })}
-                        placeholder="Choose your photo"
-                        className="file-input w-full bg-white/5 border  rounded-lg px-4 py-3 placeholder:text-white/30 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
+                        // placeholder="Click Hear"
+                        className=" w-full bg-white/5 border  rounded-lg px-4 py-3 placeholder:text-white/30 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none transition-all"
                       />
                       {errors.photo && (
                         <p className="text-red-500">{errors.photo.message}</p>

@@ -51,7 +51,7 @@ const BookCart = ({ book }) => {
           <CardFooter className="p-4">
             <Link href={`/allBooks/${id}`} className="w-full">
               <Button className="w-full font-bold text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 shadow-md hover:opacity-90">
-                Details
+              View Details
               </Button>
             </Link>
           </CardFooter>
