@@ -2,7 +2,7 @@
 import WelcomeText from "@/components/shared/auth/WelcomeText";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { FaGoogle } from "react-icons/fa";
@@ -10,6 +10,8 @@ import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/'
   const {
     register,
     handleSubmit,
@@ -29,14 +31,14 @@ const LoginPage = () => {
 
       if (error) {
         toast.error(error.message, {
-          position: "bottom-center",
-          autoClose: 1500,
+          position: "top-center",
+          autoClose: 2000,
         });
       }
 
       if (data) {
         toast.success("Successfully Logged In!", {
-          position: "bottom-center",
+          position: "top-center",
           autoClose: 1500,
         });
         setTimeout(() => {
@@ -51,6 +53,8 @@ const LoginPage = () => {
   const signWithGoogle = async () => {
     const data = await authClient.signIn.social({
       provider: "google",
+      callbackURL:callbackUrl,
+      newUserCallbackURl: callbackUrl
     });
   };
 

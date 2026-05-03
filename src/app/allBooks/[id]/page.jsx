@@ -1,5 +1,8 @@
+import BookDetailsBTN from "@/components/home/books/BookDetailsBTN";
+import { auth } from "@/lib/auth";
 import { getData, getDataDetails } from "@/lib/dataFetch";
 import { Button, Card, CardFooter, CloseButton } from "@heroui/react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -17,6 +20,11 @@ const DetailsPage = async ({ params }) => {
   const books = await getDataDetails(id);
 
   console.log(id, books);
+const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+ 
 
   return (
     <div>
@@ -116,7 +124,7 @@ const DetailsPage = async ({ params }) => {
               <CardFooter >
                 <div className="w-full space-y-4">
                   <div className="grid grid-cols-2 md:grid-cols-4  gap-4 items-center text-black ">
-                    {/* Pages */}
+                   
                     <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex flex-col items-center text-center transition-all hover:shadow-md">
                       <FaBookOpen className="text-blue-500 text-xl mb-2" />
                       <span className="text-xs font-bold uppercase text-gray-500 tracking-tight">
@@ -127,7 +135,7 @@ const DetailsPage = async ({ params }) => {
                       </span>
                     </div>
 
-                    {/* Publish Date */}
+                    
                     <div className="bg-green-50 border border-green-100 p-4 rounded-xl flex flex-col items-center text-center transition-all hover:shadow-md">
                       <FaCalendarAlt className="text-green-500 text-xl mb-2" />
                       <span className="text-xs font-bold uppercase text-gray-500 tracking-tight">
@@ -138,7 +146,7 @@ const DetailsPage = async ({ params }) => {
                       </span>
                     </div>
 
-                    {/* Publisher */}
+                    
                     <div className="bg-purple-50 border border-purple-100 p-4 rounded-xl flex flex-col items-center text-center transition-all hover:shadow-md">
                       <FaBuilding className="text-purple-500 text-xl mb-2" />
                       <span className="text-xs font-bold uppercase text-gray-500 tracking-tight">
@@ -149,7 +157,7 @@ const DetailsPage = async ({ params }) => {
                       </span>
                     </div>
 
-                    {/* Language */}
+                    
                     <div className="bg-indigo-50 border border-indigo-100 p-4 rounded-xl flex flex-col items-center text-center transition-all hover:shadow-md">
                       <FaGlobe className="text-indigo-500 text-xl mb-2" />
                       <span className="text-xs font-bold uppercase text-gray-500 tracking-tight">
@@ -161,11 +169,9 @@ const DetailsPage = async ({ params }) => {
                     </div>
                   </div>
                   <div>
-                    <Link href={`#`} className="w-full">
-                      <Button className="w-full font-bold text-white bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 shadow-md hover:opacity-90">
-                        Borrow This Book
-                      </Button>
-                    </Link>
+                    
+                     <BookDetailsBTN book={book} user={user}/>
+                    
                   </div>
                 </div>
               </CardFooter>

@@ -1,5 +1,5 @@
 import BookCart from "@/components/home/books/BookCart";
-import SearchBook from "@/components/home/books/SearchBook";
+import CategoryBooks from "@/components/home/books/CategoryBooks";
 import { getData } from "@/lib/dataFetch";
 import { Suspense } from "react";
 import { FaBookOpen } from "react-icons/fa";
@@ -28,7 +28,7 @@ const AllBooksPage = async ({ searchParams }) => {
   return (
     <div>
       <div className="flex items-center justify-center">
-        <SearchBook />
+        {/* <SearchBook /> */}
       </div>
 
       {books.length === 0 ? (
