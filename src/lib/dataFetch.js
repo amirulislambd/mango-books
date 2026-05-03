@@ -1,5 +1,7 @@
 export async function getData() {
-  const res = await fetch("https://mango-books-server.onrender.com/books_data");
+  const res = await fetch("https://mango-books-server.onrender.com/books_data",{
+    cache:'no-cache'
+  });
   const data = await res.json();
   return data;
 }
@@ -7,7 +9,7 @@ export async function getData() {
 export async function getAllBookData() {
   const res = await fetch(
     `https://mango-books-server.onrender.com/books_data`,
-    { cache: "no-store" }
+    { cache: "no-cache" }
   );
   const data = await res.json();
   return data;
