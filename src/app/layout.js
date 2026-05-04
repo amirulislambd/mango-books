@@ -15,9 +15,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://mango-books.vercel.app'),
-  title: "MangoBooks | Your Premium Digital Library",
-  description: "Explore, discover, and borrow the best collection of tech, science, and literature books on MangoBooks.",
+  metadataBase: new URL("https://mango-books.vercel.app"),
+  title: "mangoBooks",
+  verification: {
+    google: "hqLUcA89yMna2GmB8rYnhUhqAWUXBjhAaL4FrLEwQaI",
+  },
+  description:
+    "Explore, discover, and borrow the best collection of tech, science, and literature books on MangoBooks.",
   keywords: ["Library", "Books", "Tech Books", "MERN Stack", "MangoBooks"],
   authors: [{ name: "Amirul Islam" }],
 };
@@ -29,12 +33,10 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col  bg-gradient-to-br from-slate-900 via-indigo-950 to-indigo-950 text-white">
-        <Navbar/>
-        <main className="container mx-auto px-4">
-        {children}
-        </main>
-        <Footer/>
-        <ToastContainer/>
+        <Navbar />
+        <main className="container mx-auto px-4">{children}</main>
+        <Footer />
+        <ToastContainer />
       </body>
     </html>
   );

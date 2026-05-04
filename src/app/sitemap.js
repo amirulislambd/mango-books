@@ -1,13 +1,36 @@
-import { getData } from '@/lib/dataFetch';
-import React from 'react';
+import { getData } from "@/lib/dataFetch";
 
-const sitemap = async() => {
-    const books = await getData()
-    return (
-        <div>
-            
-        </div>
-    );
-};
+export default async function sitemap() {
+  const baseUrl = "https://mango-books.vercel.app";
 
-export default sitemap;
+  const allBooks = await getData();
+
+  const bookUrls = allBooks.map((book) => ({
+    url: `${baseUrl}/allBooks/${book.id || book._id}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/login`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    {
+      url: `${baseUrl}/register`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.5,
+    },
+    ...bookUrls,
+  ];
+}
