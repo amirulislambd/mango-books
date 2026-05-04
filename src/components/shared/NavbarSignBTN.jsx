@@ -22,7 +22,7 @@ const NavbarSignBTN = ({ user }) => {
             </Avatar>
             <p className="text-xs hidden md:flex border-y py-[1px]">{user?.name.toUpperCase()}</p>
           </div>
-         <a href={'/login'} className="rounded-lg rounded-l-none px-2 py-1 md:py-[10px] bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer">
+         <a href={'/login'} className="sm:rounded-lg md:rounded-l-none px-2 py-1 md:py-[10px] bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer">
          <button
             onClick={handleSignOut}
             size="lg"

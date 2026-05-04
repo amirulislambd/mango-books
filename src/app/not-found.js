@@ -3,7 +3,8 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from '@gravity-ui/icons';
 import { FaHome } from 'react-icons/fa';
-// import { Home, ArrowLeft, Search } from 'lucide-react';
+import logo from '@/assets/logo.png'
+import Image from 'next/image';
 
 const NotFound = () => {
   return (
@@ -15,15 +16,15 @@ const NotFound = () => {
 
       <div className="max-w-2xl w-full text-center relative z-10">
         {/* Animated 404 Text */}
-        <h1 className="text-[150px] md:text-[200px] font-black text-white/5 leading-none select-none">
+        <h1 className="text-[150px] md:text-[200px] font-black text-white/10 leading-none select-none">
           404
         </h1>
         
         <div className="mt-[-60px] md:mt-[-80px]">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-purple-600/20 border border-purple-500/30 rounded-3xl mb-6 shadow-xl shadow-purple-900/20">
-            
+          <div className="relative inline-flex items-center justify-center w-20 h-20 bg-purple-600/20 border border-purple-500/30 rounded-3xl mb-6 shadow-xl shadow-purple-900/20">
+            <Image width={100} height={100} src={logo} alt='logo' className='z-10 object-cover h-20 w-20 rounded-full'/>
+          <div className='w-16 h-16 blur-2xl absolute bg-amber-100 rounded-full  animate-ping'></div>
           </div>
-          
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Oops! Page Not Found
           </h2>
