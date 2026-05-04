@@ -1,7 +1,7 @@
 import BookDetailsBTN from "@/components/home/books/BookDetailsBTN";
 import { auth } from "@/lib/auth";
 import { getDataDetails } from "@/lib/dataFetch";
-import { Card, CardFooter, Button } from "@heroui/react";
+import { Card} from "@heroui/react";
 import { headers } from "next/headers";
 import Image from "next/image";
 import React from "react";
@@ -13,6 +13,51 @@ import {
   FaGlobe,
   FaTag,
 } from "react-icons/fa";
+
+export async function generateMetadata({ params }) {
+
+  const { id } = await params;
+
+
+  console.log("Fetching Metadata for ID:", id);
+
+  const books = await getDataDetails(id);
+  
+  
+  const book = books && books.length > 0 ? books[0] : null;
+
+  if (!book) {
+    return {
+      title: "Book Not Found | MangoBooks",
+      description: "This book might have been removed or is unavailable."
+    };
+  }
+
+  return {
+    title: `${book.title} by ${book.publisher} | MangoBooks`,
+    description: `${book.title} is a ${book.category} book. Edition: ${book.edition}. Available in ${book.format}.`,
+    keywords: book.tags.join(", "),
+
+    icons: {
+
+      icon: book?.image_url || book?.image || "/favicon.ico", 
+      apple: book?.image_url || book?.image || "/apple-touch-icon.png",
+    },
+
+    openGraph: {
+      title: book.title,
+      description: `Explore ${book.title} on MangoBooks. Price: $${book.price}`,
+      images: [{ url: book.image_url }],
+      type: 'book',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: book.title,
+      images: [book.image_url],
+    }
+  };
+}
+
 
 const DetailsPage = async ({ params }) => {
   const { id } = await params;
@@ -117,7 +162,7 @@ const DetailsPage = async ({ params }) => {
                 </div>
                 <div>
                   <p className="font-bold text-slate-900">{book.author}</p>
-                  <p className="text-sm text-slate-500 italic line-clamp-1">{book.author_bio || "Professional Tech Author"}</p>
+                  <p className="text-sm text-slate-500 italic line-clamp-1 hover:line-clamp-none transition-all duration-500 ease-in-out hover:scale-[1.02] hover:text-slate-700  origin-top cursor-help">{book.author_bio || "Professional Tech Author"}</p>
                 </div>
               </div>
 

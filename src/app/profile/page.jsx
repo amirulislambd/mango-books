@@ -5,13 +5,17 @@ import { headers } from "next/headers";
 import React from "react";
 import { FaCalendarAlt, FaEnvelope, FaUserCircle } from "react-icons/fa";
 
+export const metadata = {
+    title: "User Profile | MangoBooks",
+    description: "Manage your account, track your reading history, and update your personal information on MangoBooks.",
+  };
+
 const ProfilePage = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
   const user = session?.user;
 
-  // ফরম্যাট করা তারিখ
   const joinDate = new Date(user?.createdAt).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -21,11 +25,11 @@ const ProfilePage = async () => {
   return (
     <div className="min-h-[70vh] flex items-center justify-center px-4 py-10 md:py-20 cu">
       <div className="relative w-full max-w-2xl overflow-hidden rounded-[32px] border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-xl shadow-2xl">
-        <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/20 blur-3xl shadow-2xl animate-ping"></div>
+        <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl shadow-2xl animate-ping"></div>
 
-        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/20 blur-3xl shadow-2xl animate-ping"></div>
+        <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl shadow-2xl animate-ping"></div>
 
-        <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-indigo-500/20 blur-3xl shadow-2xl animate-ping"></div>
+        <div className="absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl shadow-2xl animate-ping"></div>
 
         <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-purple-500/10 blur-3xl animate-ping"></div>
 
@@ -50,10 +54,10 @@ const ProfilePage = async () => {
 
           <div className="text-center space-y-4 w-full">
             <div className="space-y-1">
-              <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight">
+              <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight uppercase">
                 {user?.name}
               </h1>
-              <div className="flex items-center justify-center gap-2 text-indigo-400 font-medium uppercase tracking-widest text-xs">
+              <div className="flex items-center justify-center gap-2 text-indigo-300 font-medium uppercase tracking-widest text-lg">
                 <FaUserCircle /> Verified Member
               </div>
             </div>

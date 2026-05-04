@@ -8,6 +8,7 @@ import React from "react"
 const NavbarSignBTN = ({ user }) => {
   const handleSignOut = async () => {
     await authClient.signOut();
+    window.location.href="/login"
   };
   return (
     <div>
@@ -22,15 +23,15 @@ const NavbarSignBTN = ({ user }) => {
             </Avatar>
             <p className="text-xs hidden md:flex border-y py-[1px]">{user?.name.toUpperCase()}</p>
           </div>
-         <a href={'/login'} className="sm:rounded-lg md:rounded-l-none px-2 py-1 md:py-[10px] bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer">
+         
          <button
             onClick={handleSignOut}
             size="lg"
-            className=" rounded-lg rounded-r- bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer"
+            className=" sm:rounded-lg md:rounded-l-none px-2 py-1 md:py-[10px] bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer"
           >
             Logout
           </button>
-         </a>
+      
         </div>
       ) : (
        <Link className="rounded-lg px-2 py-1 md:py-2 bg-gradient-to-r from-blue-500 to-purple-500 cursor-pointer" href={'/login'}>    

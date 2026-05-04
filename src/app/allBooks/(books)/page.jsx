@@ -1,10 +1,17 @@
 import BookCart from "@/components/home/books/BookCart";
-import CategoryBooks from "@/components/home/books/CategoryBooks";
+
 import { getData } from "@/lib/dataFetch";
-import { Suspense } from "react";
+
 import { FaBookOpen } from "react-icons/fa";
 
+export const metadata = {
+  title: "All Books | MangoBooks Digital Library",
+  description:
+    "Browse our extensive collection of tech, science, and literature books. Find your next favorite read today.",
+};
+
 const AllBooksPage = async ({ searchParams }) => {
+  
   const sp = await searchParams;
   const category = sp?.category || "";
   const search = sp?.search || "";
@@ -22,18 +29,36 @@ const AllBooksPage = async ({ searchParams }) => {
       book.title.toLowerCase().includes(search.toLowerCase()) ||
       book.author.toLowerCase().includes(search.toLowerCase());
 
-      return matchCategory && matchSearch
+    return matchCategory && matchSearch;
   });
-
-  return (
+  // --- SEO Structured Data (ItemList) ---
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "numberOfItems": books.length,
+    "itemListElement": books.slice(0, 10).map((book, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://your-domain.com/allBooks/${book.id}`,
+      "name": book.title,
+    })),
+  };
+ 
+   return (
     <div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <div className="flex items-center justify-center">
         {/* <SearchBook /> */}
       </div>
 
       {books.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-20 text-center">
-         <FaBookOpen className="text-2xl md:text-4xl lg:text-6xl "/>
+          <FaBookOpen className="text-2xl md:text-4xl lg:text-6xl text-gray-400" />
           <h3 className="text-xl font-semibold text-gray-300 mb-2">
             No books found
           </h3>
@@ -50,6 +75,7 @@ const AllBooksPage = async ({ searchParams }) => {
       )}
     </div>
   );
+  
 };
 
 export default AllBooksPage;
